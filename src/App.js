@@ -14,7 +14,7 @@ class App extends React.Component{
     this.setState({
       [name]: value,
     })
-    console.log("chaged value:" , value, this);
+    console.log("changed value:" , value, this);
   };
 
   render() {
