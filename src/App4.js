@@ -78,7 +78,7 @@ function App2() {
 
 
   useEffect(() => {}); // render시 호출
-
+  
   useEffect(() => {
     console.log('mount');
   }, []); // mount 시에만 호출

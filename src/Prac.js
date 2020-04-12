@@ -1,43 +1,36 @@
-import React from "react";
+import React, { useReducer } from "react";
 
-const TodoList = ({ todo }) => <li>{todo}</li>;
-
-class Prac extends React.Component {
-  state = {
-    todoList: ["Python", "Django"],
-    current: '',
+const reducer = (prevState, actions) => {
+  const { type, value } = actions;
+  if (type === "SET_NAME"){
+    return { ...prevState, name: value }
   }
-
-  onChange = (e) => {
-    const { value } = e.target;
-    this.setState({
-      current: value,
-    })
+  else if (type === "SET_AGE"){
+    return { ...prevState, age:value }
   }
+  return prevState;
+};
 
-  onKeyDown = (e) => {
-    if(e.keyCode === 13){
-      const { current, todoList } = this.state;
-      this.setState({
-        current: '',
-        todoList: [...todoList, current],
-      });
-    }
+const Prac = () => {
+  const [state, dispatch] = useReducer(reducer, { name: '', age: '' });
+  const { name, age } = state;
+  const onChange = (e) => {
+    const { name: type, value } = e.target;
+    dispatch({ type, value })
+    // if(name === "name"){
+    //   dispatch({ type: "SET_NAME", value: value })
+    // }
+    // if(name === "age"){
+    //   dispatch({ type: "SET_AGE", value: value })
+    // }
   }
-
-  render() {
-    return (
-      <div>
-        <ul>
-          {this.state.todoList.map((todo, idx) => (
-            <TodoList todo={todo} key={idx} />
-          ))}
-        </ul>
-        <input value={this.state.current} onChange={this.onChange} onKeyDown={this.onKeyDown} />
-        <hr />
-        {JSON.stringify(this.state)}
-      </div>
-    )
-  }
+  return (
+    <div>
+      name: {name} , age: {age}
+      <br />
+      <input type="text" name="SET_NAME" placeholder="name" onChange={onChange} />
+      <input type="text" name="SET_AGE" placeholder="age" onChange={onChange} />
+    </div>
+  )
 }
 export default Prac;

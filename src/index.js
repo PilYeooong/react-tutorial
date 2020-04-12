@@ -5,6 +5,8 @@ import App from './App';
 import App3 from 'App3';
 import App4 from 'App4';
 import App5 from 'App5';
+import App6 from 'App6';
+import App7 from 'App7';
 import TodoList from 'TodoList';
 import Prac from 'Prac';
 import EpisodeList from 'EpisodeList';
@@ -12,7 +14,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App5 />
+    <App7 />
   </React.StrictMode>,
   document.getElementById('root')
 );
