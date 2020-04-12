@@ -1,23 +1,37 @@
 import React, { createContext } from 'react';
+import { useContext } from 'react';
 
 const MessageContext = createContext();
 
 const App = () => (
   <MessageContext.Provider value="Provider Values">
-    <Level1 message="Context API in React" />
+    <Level2Wrapper />
   </MessageContext.Provider>
 );
 
-const Level1 = ({ message }) => <Level2 message={message} />;
+// const Level2Wrapper = () => {
+//   return (
+//     <div>
+//       <MessageContext.Consumer>
+//         {(message) => <Level2 message={message} />}
+//       </MessageContext.Consumer>
+//     </div>
+//   )
+// };
 
-const Level2 = ({ message }) => <Level3 message={message} />;
-
-const Level3 = ({ message }) => {
+const Level2Wrapper = () => {
+  const message = useContext(MessageContext); //getter
   return (
     <div>
-      <MessageContext.Consumer>
-        {(message) => <>Level3: {message}</>}
-      </MessageContext.Consumer>
+      <Level2 message={message} />
+    </div>
+  )
+};
+
+const Level2 = ({message}) => {
+  return (
+    <div>
+      Level2: {message}
     </div>
   )
 };
